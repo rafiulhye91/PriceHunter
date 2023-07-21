@@ -16,6 +16,7 @@ import com.example.pricehunter.domain.sample.SampleDomain
 import com.example.pricehunter.mock.MockApiServices
 import com.example.pricehunter.service.sample.ISampleService
 import com.example.pricehunter.service.sample.SampleService
+import com.example.pricehunter.view.launch.ILaunchView
 import com.example.pricehunter.view.main.IMainView
 import com.example.pricehunter.view.sample.ISampleView
 import dagger.Module
@@ -136,6 +137,11 @@ object ViewModule {
     @Provides
     fun provideISampleView(activity: Activity): ISampleView {
         return activity as ISampleView
+    }
+
+    @Provides
+    fun provideILaunchView(activity: Activity): ILaunchView {
+        return activity as ILaunchView
     }
 
 }
