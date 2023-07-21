@@ -12,15 +12,16 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.PriceHunter">
         <activity
-            android:name="com.example.pricehunter.view.main.MainActivity"
+            android:name="com.example.pricehunter.view.launch.LaunchActivity"
+            android:theme="@style/Theme.PriceHunter.NoActionBar"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
-
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
 
+        <activity android:name="com.example.pricehunter.view.main.MainActivity" />
         <activity android:name="com.example.pricehunter.view.sample.SampleActivity" />
 
     </application>

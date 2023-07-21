@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">PriceHunter</string>
+    <string name="app_name">Price Hunter</string>
     <string name="loading">Loading…</string>
     <string name="error">Error</string>
     <string name="ok">OK</string>

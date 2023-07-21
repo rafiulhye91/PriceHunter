@@ -1,5 +1,6 @@
 package com.example.pricehunter.base
 
+import android.content.Context
 import androidx.lifecycle.LifecycleOwner
 
 /**
@@ -36,4 +37,17 @@ interface IBaseView : LifecycleOwner {
      * @param error The error message to be displayed on the error dialog.
      */
     fun showError(error: String?)
+
+    /**
+     * Navigate to the specified activity.
+     *
+     * @param context The context from which the navigation is initiated.
+     * @param destinationActivity The target activity class to navigate to.
+     * @param shouldFinish Whether the current activity should be finished after navigation.
+     */
+    fun navigateToActivity(
+        context: Context,
+        destinationActivity: Class<*>,
+        shouldFinish: Boolean
+    )
 }

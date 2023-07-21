@@ -1,5 +1,8 @@
 package com.example.pricehunter.base
 
+import android.app.Activity
+import android.content.Context
+import android.content.Intent
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import com.example.pricehunter.R
@@ -49,5 +52,17 @@ abstract class BaseActivity : AppCompatActivity(), IBaseView {
             }
             .create()
             .show()
+    }
+
+    override fun navigateToActivity(
+        context: Context,
+        destinationActivity: Class<*>,
+        shouldFinish: Boolean
+    ) {
+        val intent = Intent(context, destinationActivity)
+        context.startActivity(intent)
+        if (shouldFinish && context is Activity) {
+            context.finish()
+        }
     }
 }
