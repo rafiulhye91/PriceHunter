@@ -11,9 +11,13 @@ import com.example.pricehunter.data.remote.ApiServices
 import com.example.pricehunter.data.remote.ApiServices.Companion.BASE_URL
 import com.example.pricehunter.data.remote.ApiServices.Companion.TIMEOUT
 import com.example.pricehunter.data.remote.AuthInterceptor
+import com.example.pricehunter.domain.finder.FinderDomain
+import com.example.pricehunter.domain.finder.IFinderDomain
 import com.example.pricehunter.domain.sample.ISampleDomain
 import com.example.pricehunter.domain.sample.SampleDomain
 import com.example.pricehunter.mock.MockApiServices
+import com.example.pricehunter.service.finder.FinderService
+import com.example.pricehunter.service.finder.IFinderService
 import com.example.pricehunter.service.sample.ISampleService
 import com.example.pricehunter.service.sample.SampleService
 import com.example.pricehunter.view.launch.ILaunchView
@@ -115,8 +119,20 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideFinderDomain(apiServices: ApiServices): IFinderDomain {
+        return FinderDomain(apiServices)
+    }
+
+    @Provides
+    @Singleton
     fun provideSampleService(domain: ISampleDomain): ISampleService {
         return SampleService(domain)
+    }
+
+    @Provides
+    @Singleton
+    fun provideFinderService(domain: IFinderDomain): IFinderService {
+        return FinderService(domain)
     }
 }
 
