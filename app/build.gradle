@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.pricehunter"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -81,6 +81,9 @@ dependencies {
 
     //animation
     implementation 'com.github.rosenpin:fading-text-view:3.0'
+
+    //encrypted shared prefs
+    implementation "androidx.security:security-crypto:1.0.0"
 
     //test
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'

@@ -2,11 +2,15 @@ package com.example.pricehunter.di
 
 import android.app.Activity
 import android.app.Application
+import android.content.SharedPreferences
 import androidx.room.Room
+import androidx.security.crypto.EncryptedSharedPreferences
+import androidx.security.crypto.MasterKeys
 import com.example.pricehunter.BuildConfig
 import com.example.pricehunter.data.local.AppDatabase
 import com.example.pricehunter.data.local.AppDatabase.Companion.DATABASE_NAME
 import com.example.pricehunter.data.local.DaoServices
+import com.example.pricehunter.data.prefs.AppPrefs
 import com.example.pricehunter.data.remote.ApiServices
 import com.example.pricehunter.data.remote.ApiServices.Companion.BASE_URL
 import com.example.pricehunter.data.remote.ApiServices.Companion.TIMEOUT
@@ -21,6 +25,7 @@ import com.example.pricehunter.service.finder.IFinderService
 import com.example.pricehunter.service.sample.ISampleService
 import com.example.pricehunter.service.sample.SampleService
 import com.example.pricehunter.view.launch.ILaunchView
+import com.example.pricehunter.view.login.ILoginView
 import com.example.pricehunter.view.main.IMainView
 import com.example.pricehunter.view.sample.ISampleView
 import dagger.Module
@@ -106,9 +111,28 @@ object AppModule {
     }
 
     @Provides
+    fun provideSharedPrefs(app: Application): SharedPreferences {
+        val keyGenParamSpec = MasterKeys.AES256_GCM_SPEC
+        val masterKeys = MasterKeys.getOrCreate(keyGenParamSpec)
+        return EncryptedSharedPreferences.create(
+            BuildConfig.APPLICATION_ID,
+            masterKeys,
+            app.applicationContext,
+            EncryptedSharedPreferences.PrefKeyEncryptionScheme.AES256_SIV,
+            EncryptedSharedPreferences.PrefValueEncryptionScheme.AES256_GCM
+        )
+    }
+
+    @Provides
     @Singleton
     fun provideDaoServices(database: AppDatabase): DaoServices {
         return database.getDaoServices()
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppPrefs(sharedPrefs: SharedPreferences): AppPrefs {
+        return AppPrefs(sharedPrefs)
     }
 
     @Provides
@@ -158,6 +182,11 @@ object ViewModule {
     @Provides
     fun provideILaunchView(activity: Activity): ILaunchView {
         return activity as ILaunchView
+    }
+
+    @Provides
+    fun provideILoginView(activity: Activity): ILoginView {
+        return activity as ILoginView
     }
 
 }
