@@ -8,11 +8,10 @@ import javax.inject.Inject
 class LaunchPresenter @Inject constructor(override val view: ILaunchView) : BasePresenter(view) {
 
     companion object {
-        const val WAITING_TIME: Long = 5000
+        const val WAITING_TIME: Long = 3000
     }
 
     override fun start() {
-        view.setTitleAnimation()
         navigateToMainActivity()
     }
 

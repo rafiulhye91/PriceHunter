@@ -1,7 +1,6 @@
 package com.example.pricehunter.view.launch
 
 import android.os.Bundle
-import android.view.View.VISIBLE
 import com.example.pricehunter.base.BaseActivity
 import com.example.pricehunter.databinding.ActivityLaunchBinding
 import com.example.pricehunter.view.main.MainActivity
@@ -20,19 +19,6 @@ class LaunchActivity : BaseActivity(), ILaunchView {
         binding = ActivityLaunchBinding.inflate(layoutInflater)
         setContentView(binding.root)
         presenter.start()
-    }
-
-    override fun setTitleAnimation() {
-        binding.tvTitle.apply {
-            scaleX = 1f
-            scaleY = 1f
-            visibility = VISIBLE
-            animate()
-                .scaleX(3f)
-                .scaleY(3f)
-                .setDuration(3000)
-                .start()
-        }
     }
 
     override fun navigateToMainActivity() {
