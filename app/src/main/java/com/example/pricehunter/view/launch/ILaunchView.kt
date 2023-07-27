@@ -4,5 +4,5 @@ import com.example.pricehunter.base.IBaseView
 
 interface ILaunchView : IBaseView {
     fun navigateToMainActivity()
-    fun navToAuthActivity(authCode: String)
+    fun navToAuthActivity()
 }

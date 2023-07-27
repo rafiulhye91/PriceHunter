@@ -3,10 +3,7 @@ package com.example.pricehunter.mock
 import android.app.Application
 import android.util.Log
 import com.example.pricehunter.data.remote.ApiServices
-import com.example.pricehunter.data.remote.model.AccessTokenDTO
-import com.example.pricehunter.data.remote.model.SampleDTO
-import com.example.pricehunter.data.remote.model.SampleErrorDTO
-import com.example.pricehunter.data.remote.model.SearchResultDTO
+import com.example.pricehunter.data.remote.model.*
 import com.example.pricehunter.domain.model.Image
 import com.example.pricehunter.util.TAG
 import com.google.gson.Gson
@@ -30,6 +27,14 @@ class MockApiServices @Inject constructor(private val app: Application) :
         redirectUri: String
     ): Response<AccessTokenDTO?> {
         return app.generateMockResponse("mock/access_token.json")
+    }
+
+    override suspend fun getRefreshAccessToken(
+        grantType: String,
+        refreshToken: String,
+        scope: String
+    ): Response<RefreshTokenDTO?> {
+        return app.generateMockResponse("mock/refresh_token.json")
     }
 
     override suspend fun searchByImage(image: Image): Response<SearchResultDTO?> {

@@ -1,6 +1,7 @@
 package com.example.pricehunter.data.remote
 
 import com.example.pricehunter.data.remote.model.AccessTokenDTO
+import com.example.pricehunter.data.remote.model.RefreshTokenDTO
 import com.example.pricehunter.data.remote.model.SampleDTO
 import com.example.pricehunter.data.remote.model.SearchResultDTO
 import com.example.pricehunter.domain.model.Image
@@ -20,6 +21,14 @@ interface ApiServices {
         @Field("code") code: String,
         @Field("redirect_uri") redirectUri: String,
     ): Response<AccessTokenDTO?>
+
+    @FormUrlEncoded
+    @POST("identity/v1/oauth2/token")
+    suspend fun getRefreshAccessToken(
+        @Field("grant_type") grantType: String = "refresh_token",
+        @Field("refresh_token") refreshToken: String,
+        @Field("scope") scope: String
+    ): Response<RefreshTokenDTO?>
 
     @POST("buy/browse/v1/item_summary/search_by_image?&limit=10&sort=-price")
     suspend fun searchByImage(@Body image: Image): Response<SearchResultDTO?>

@@ -7,18 +7,20 @@ data class AccessTokenDTO(
     @SerializedName("access_token")
     val token: String,
     @SerializedName("expires_in")
-    val expiredIn: Int,
+    val expiredIn: Long,
     @SerializedName("refresh_token")
     val refreshToken: String,
     @SerializedName("refresh_token_expires_in")
-    val refreshTokenExpiredIn: Int,
+    val refreshTokenExpiredIn: Long,
     @SerializedName("token_type")
     val tokenType: String
 ) {
     fun toAccessToken(): AccessToken {
         return AccessToken(
             token = token,
-            expiredIn = expiredIn
+            expiredIn = expiredIn,
+            refreshToken = refreshToken,
+            refreshTokenExpiredIn = refreshTokenExpiredIn
         )
     }
 
