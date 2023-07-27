@@ -2,6 +2,7 @@ package com.example.pricehunter.data.prefs
 
 import android.content.SharedPreferences
 import com.example.pricehunter.domain.model.AccessToken
+import com.example.pricehunter.domain.model.RefreshToken
 import com.example.pricehunter.util.TimeUtils
 import org.threeten.bp.LocalDateTime
 import org.threeten.bp.ZoneId
@@ -67,7 +68,7 @@ class AppPrefs @Inject constructor(private val sharedPrefs: SharedPreferences) {
         return !hasRefreshTokenExpired()
     }
 
-    private fun getRefreshToken(): String? {
+    fun getRefreshToken(): String? {
         return sharedPrefs.getString(KEY_REFRESH_TOKEN, null)
     }
 
@@ -95,5 +96,14 @@ class AppPrefs @Inject constructor(private val sharedPrefs: SharedPreferences) {
 
     private fun getRefreshTokenExpiration(): String? {
         return sharedPrefs.getString(KEY_REFRESH_TOKEN_EXPIRATION, null)
+    }
+
+    fun setRefreshAccessToken(refreshToken: RefreshToken?) {
+        if (refreshToken == null) {
+            return
+        }
+        sharedPrefs.edit().putString(KEY_ACCESS_TOKEN, refreshToken.accessToken).apply()
+        val expiredAt = TimeUtils.getExpirationTime(refreshToken.expiredIn)
+        sharedPrefs.edit().putString(KEY_ACCESS_TOKEN_EXPIRATION, expiredAt).apply()
     }
 }
