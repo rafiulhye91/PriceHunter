@@ -3,10 +3,11 @@ package com.example.pricehunter.base
 import com.example.pricehunter.data.ItemWrapper
 import com.example.pricehunter.data.ListItemWrapper
 import com.example.pricehunter.data.Resource
+import com.example.pricehunter.data.remote.model.ErrorDTO
 import com.example.pricehunter.data.util.AppExceptions.NoDataException
 import com.example.pricehunter.data.util.ErrorType.UNKNOWN_ERROR
 import com.example.pricehunter.data.util.handleException
-import com.example.pricehunter.data.util.handleHTTPError
+import com.google.gson.Gson
 
 /**
  *
@@ -23,16 +24,18 @@ abstract class BaseDomain {
      * @param func A function that returns an [ItemWrapper] object.
      * @return A [Resource] object that can be either a success or an error.
      */
-    inline fun <T, DTO> handleApiResponse(func: () -> ItemWrapper<T, DTO>): Resource<T> {
+    inline fun <T, DTO : Any> handleApiResponse(func: () -> ItemWrapper<T, DTO>): Resource<T> {
         try {
             val item = func()
-            if (item.response.isSuccessful) {
+            return if (item.response.isSuccessful) {
                 if (item.data == null) {
                     throw NoDataException()
                 }
-                return Resource.Success(item.data)
+                Resource.Success(item.data)
+            } else {
+                val errorBody = item.response.errorBody()?.string()
+                Resource.Error(error = extractErrorMessage(errorBody))
             }
-            handleHTTPError(item.response)
         } catch (e: Exception) {
             return handleException(e)
         }
@@ -54,7 +57,8 @@ abstract class BaseDomain {
                 }
                 return Resource.Success(item.data as List<T>)
             }
-            handleHTTPError(item.response)
+            val errorBody = item.response.errorBody()?.string()
+            return Resource.Error(error = extractErrorMessage(errorBody))
         } catch (e: Exception) {
             return handleException(e)
         }
@@ -74,5 +78,10 @@ abstract class BaseDomain {
         } catch (e: Exception) {
             handleException(e)
         }
+    }
+
+    fun extractErrorMessage(errorBody: String?): String {
+        val error = Gson().fromJson(errorBody, ErrorDTO::class.java)
+        return error.errorDescription
     }
 }

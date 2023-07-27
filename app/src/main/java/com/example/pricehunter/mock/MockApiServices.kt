@@ -3,7 +3,10 @@ package com.example.pricehunter.mock
 import android.app.Application
 import android.util.Log
 import com.example.pricehunter.data.remote.ApiServices
-import com.example.pricehunter.data.remote.model.*
+import com.example.pricehunter.data.remote.model.AccessTokenDTO
+import com.example.pricehunter.data.remote.model.RefreshTokenDTO
+import com.example.pricehunter.data.remote.model.SampleDTO
+import com.example.pricehunter.data.remote.model.SearchResultDTO
 import com.example.pricehunter.domain.model.Image
 import com.example.pricehunter.util.TAG
 import com.google.gson.Gson
@@ -11,6 +14,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.withContext
 import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.Protocol
+import okhttp3.Request
 import okhttp3.ResponseBody.Companion.toResponseBody
 import okio.IOException
 import okio.buffer
@@ -65,11 +70,14 @@ private suspend inline fun <reified T> Application.generateMockResponse(
 
 private fun <T> Application.generateErrorResponse(errorFileName: String): Response<T> {
     val jsonString = getJsonString(errorFileName) ?: ""
-    val mockError = Gson().fromJson(jsonString, SampleErrorDTO::class.java)
-    return Response.error(
-        mockError.code, jsonString
-            .toResponseBody("application/json".toMediaTypeOrNull())
-    )
+    val responseBody = jsonString.toResponseBody("application/json".toMediaTypeOrNull())
+    val rawResponse = okhttp3.Response.Builder()
+        .code(400) // Set the desired HTTP error code here
+        .message("Mock Error Response")
+        .protocol(Protocol.HTTP_1_1)
+        .request(Request.Builder().url("http://mock.error").build())
+        .build()
+    return Response.error(responseBody, rawResponse)
 }
 
 private fun Application.getJsonString(file: String): String? {
