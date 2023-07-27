@@ -1,0 +1,4 @@
+{
+  "error": "mock_invalid_grant",
+  "error_description": "Mock: the provided authorization grant code is invalid or was issued to another client"
+}
