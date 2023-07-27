@@ -5,9 +5,6 @@ import com.example.pricehunter.base.BasePresenter
 import com.example.pricehunter.data.Resource
 import com.example.pricehunter.data.prefs.AppPrefs
 import com.example.pricehunter.service.auth.AuthService
-import com.example.pricehunter.view.launch.LaunchPresenter.Companion.accessToken
-import com.example.pricehunter.view.launch.LaunchPresenter.Companion.authCode
-import com.example.pricehunter.view.launch.LaunchPresenter.Companion.refreshToken
 import kotlinx.coroutines.launch
 import java.net.URLDecoder
 import javax.inject.Inject
@@ -32,16 +29,19 @@ class AuthPresenter @Inject constructor(
                 "&prompt=login"
     }
 
-    fun start(featureCode: String) {
-        when (featureCode) {
-            accessToken -> {
+    override fun start() {
+        when {
+            !appPrefs.hasValidAuthCode() -> {
+                view.loadUrl(loginUrl)
+            }
+            !appPrefs.hasValidAccessToken() && !appPrefs.hasValidRefreshToken() -> {
                 getAccessToken()
             }
-            refreshToken -> {
+            !appPrefs.hasValidAccessToken() && appPrefs.hasValidRefreshToken() -> {
                 getRefreshAccessToken()
             }
             else -> {
-                view.loadUrl(loginUrl)
+                view.navigateToMainActivity()
             }
         }
 
@@ -53,7 +53,7 @@ class AuthPresenter @Inject constructor(
             val refreshToken = appPrefs.getRefreshToken()
             if (refreshToken.isNullOrEmpty()) {
                 view.showError("You don't have access")
-                start(authCode)
+                start()
                 return@launch
             }
             val result = authService.getRefreshAccessToken(refreshToken, SCOPE_LIST)
@@ -84,7 +84,7 @@ class AuthPresenter @Inject constructor(
             val authCode = URLDecoder.decode(appPrefs.getAuthCode(), "UTF-8")
             if (authCode.isNullOrEmpty()) {
                 view.showError("You don't have any auth code")
-                start(authCode)
+                start()
                 return@launch
             }
             val result = authService.getAccessToken(authCode, REDIRECT_URI)

@@ -9,7 +9,6 @@ import android.webkit.WebView
 import android.webkit.WebViewClient
 import com.example.pricehunter.base.BaseActivity
 import com.example.pricehunter.databinding.ActivityAuthBinding
-import com.example.pricehunter.view.launch.LaunchPresenter.Companion.authCode
 import com.example.pricehunter.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -21,20 +20,9 @@ class AuthActivity : BaseActivity(), IAuthView {
 
     private lateinit var binding: ActivityAuthBinding
 
-    private val featureCode: String by lazy {
-        intent.getStringExtra(EXTRA_AUTH_FEATURE) ?: authCode
-    }
-
     companion object {
-        private const val EXTRA_AUTH_FEATURE = "Auth Feature"
         fun newInstance(context: Context): Intent {
             return Intent(context, AuthActivity::class.java)
-        }
-
-        fun newInstance(context: Context, featureCode: String?): Intent {
-            val intent = Intent(context, AuthActivity::class.java)
-            intent.putExtra(EXTRA_AUTH_FEATURE, featureCode)
-            return intent
         }
     }
 
@@ -43,7 +31,7 @@ class AuthActivity : BaseActivity(), IAuthView {
         binding = ActivityAuthBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setWebView()
-        presenter.start(featureCode)
+        presenter.start()
     }
 
     private fun setWebView() {

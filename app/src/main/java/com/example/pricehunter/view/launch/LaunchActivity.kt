@@ -30,8 +30,8 @@ class LaunchActivity : BaseActivity(), ILaunchView {
         )
     }
 
-    override fun navToAuthActivity(featureCode: String) {
-        startActivity(AuthActivity.newInstance(this, featureCode))
+    override fun navToAuthActivity() {
+        startActivity(AuthActivity.newInstance(this))
         finish()
     }
 
