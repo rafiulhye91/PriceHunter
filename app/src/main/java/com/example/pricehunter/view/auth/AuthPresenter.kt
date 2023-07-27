@@ -7,10 +7,8 @@ import com.example.pricehunter.data.Resource
 import com.example.pricehunter.data.prefs.AppPrefs
 import com.example.pricehunter.service.auth.AuthService
 import com.example.pricehunter.view.launch.LaunchPresenter.Companion.accessToken
+import com.example.pricehunter.view.launch.LaunchPresenter.Companion.refreshToken
 import kotlinx.coroutines.launch
-import org.threeten.bp.LocalDateTime
-import org.threeten.bp.ZoneId
-import org.threeten.bp.format.DateTimeFormatter
 import java.net.URLDecoder
 import javax.inject.Inject
 
@@ -38,6 +36,9 @@ class AuthPresenter @Inject constructor(
         when (featureCode) {
             accessToken -> {
                 getAccessToken()
+            }
+            refreshToken -> {
+                //TODO::get Refresh Token
             }
             else -> {
                 view.loadUrl(loginUrl)
@@ -67,9 +68,12 @@ class AuthPresenter @Inject constructor(
             view.hideProgress()
             when (result) {
                 is Resource.Success -> {
-                    val expiredAt = getExpirationTime(result.data?.expiredIn!!.toLong())
-                    appPrefs.setAccessToken(result.data.token, expiredAt)
-                    Log.d("rafi", "access token: ${result.data.token}::${result.data.expiredIn}")
+                    appPrefs.setAccessToken(result.data)
+                    Log.d("rafi", "access token: ${result.data?.token}::${result.data?.expiredIn}")
+                    Log.d(
+                        "rafi",
+                        "refresh token: ${result.data?.refreshToken}::${result.data?.refreshTokenExpiredIn}"
+                    )
                     view.navigateToMainActivity()
                 }
                 is Resource.Error -> {
@@ -83,12 +87,5 @@ class AuthPresenter @Inject constructor(
 
     private fun saveToSharedPrefs(code: String?) {
         appPrefs.setAuthCode(code)
-    }
-
-    private fun getExpirationTime(expiredIn: Long): String {
-        val currentTime = LocalDateTime.now(ZoneId.systemDefault())
-        val expiredAt = currentTime.plusSeconds(expiredIn).toString()
-        val formatter = DateTimeFormatter.ISO_LOCAL_DATE_TIME
-        return expiredAt.format(formatter)
     }
 }

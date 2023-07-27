@@ -15,6 +15,7 @@ class LaunchPresenter @Inject constructor(
         private const val WAITING_TIME: Long = 3000
         const val authCode = "Auth Code"
         const val accessToken = "Access Token"
+        const val refreshToken = "Refresh Token"
     }
 
     override fun start() {
@@ -25,14 +26,19 @@ class LaunchPresenter @Inject constructor(
     }
 
     private fun navigate() {
-        if (!appPrefs.hasValidAuthCode()) {
-            view.navToAuthActivity(authCode)
-            return
+        when {
+            !appPrefs.hasValidAuthCode() -> {
+                view.navToAuthActivity(authCode)
+            }
+            !appPrefs.hasValidAccessToken() && !appPrefs.hasValidRefreshToken() -> {
+                view.navToAuthActivity(accessToken)
+            }
+            !appPrefs.hasValidAccessToken() && appPrefs.hasValidRefreshToken() -> {
+                view.navToAuthActivity(refreshToken)
+            }
+            else -> {
+                view.navigateToMainActivity()
+            }
         }
-        if (!appPrefs.hasValidAccessToken()) {
-            view.navToAuthActivity(accessToken)
-            return
-        }
-        view.navigateToMainActivity()
     }
 }
