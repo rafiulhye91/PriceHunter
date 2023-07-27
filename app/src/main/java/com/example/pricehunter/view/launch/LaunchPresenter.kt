@@ -12,20 +12,27 @@ class LaunchPresenter @Inject constructor(
 ) : BasePresenter(view) {
 
     companion object {
-        const val WAITING_TIME: Long = 3000
+        private const val WAITING_TIME: Long = 3000
+        const val authCode = "Auth Code"
+        const val accessToken = "Access Token"
     }
 
     override fun start() {
-        navigate()
+        presenterScope.launch {
+            delay(WAITING_TIME)
+            navigate()
+        }
     }
 
     private fun navigate() {
-        presenterScope.launch {
-            delay(WAITING_TIME)
-            when {
-                appPrefs.hasValidAuthCode() -> view.navigateToMainActivity()
-                else -> view.navigateToLoginActivity()
-            }
+        if (!appPrefs.hasValidAuthCode()) {
+            view.navToAuthActivity(authCode)
+            return
         }
+        if (!appPrefs.hasValidAccessToken()) {
+            view.navToAuthActivity(accessToken)
+            return
+        }
+        view.navigateToMainActivity()
     }
 }

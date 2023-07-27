@@ -2,7 +2,6 @@ package com.example.pricehunter.data.util
 
 import android.database.sqlite.SQLiteConstraintException
 import android.database.sqlite.SQLiteException
-import android.util.Log
 import com.example.pricehunter.data.Resource
 import com.example.pricehunter.data.util.AppExceptions.*
 import com.example.pricehunter.data.util.ErrorType.*
@@ -84,6 +83,5 @@ fun <T> handleException(e: Exception): Resource<T> {
         InternalServerErrorException::class.java to INTERNAL_SERVER_ERROR,
     )
     val error = errorMap[e.javaClass] ?: UNKNOWN_ERROR
-    Log.e(TAG, e.localizedMessage)
     return Resource.Error<T>(error = error.message)
 }

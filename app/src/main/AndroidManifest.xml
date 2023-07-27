@@ -22,7 +22,7 @@
         </activity>
 
         <activity android:name="com.example.pricehunter.view.main.MainActivity" />
-        <activity android:name="com.example.pricehunter.view.login.LoginActivity" />
+        <activity android:name="com.example.pricehunter.view.auth.AuthActivity" />
         <activity android:name="com.example.pricehunter.view.sample.SampleActivity" />
 
     </application>

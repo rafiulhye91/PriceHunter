@@ -3,7 +3,7 @@ package com.example.pricehunter.view.launch
 import android.os.Bundle
 import com.example.pricehunter.base.BaseActivity
 import com.example.pricehunter.databinding.ActivityLaunchBinding
-import com.example.pricehunter.view.login.LoginActivity
+import com.example.pricehunter.view.auth.AuthActivity
 import com.example.pricehunter.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -30,11 +30,9 @@ class LaunchActivity : BaseActivity(), ILaunchView {
         )
     }
 
-    override fun navigateToLoginActivity() {
-        navigateToActivity(
-            context = this,
-            destinationActivity = LoginActivity::class.java,
-            shouldFinish = true
-        )
+    override fun navToAuthActivity(featureCode: String) {
+        startActivity(AuthActivity.newInstance(this, featureCode))
+        finish()
     }
+
 }

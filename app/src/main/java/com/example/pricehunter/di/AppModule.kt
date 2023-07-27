@@ -3,6 +3,7 @@ package com.example.pricehunter.di
 import android.app.Activity
 import android.app.Application
 import android.content.SharedPreferences
+import android.util.Base64
 import androidx.room.Room
 import androidx.security.crypto.EncryptedSharedPreferences
 import androidx.security.crypto.MasterKeys
@@ -15,17 +16,21 @@ import com.example.pricehunter.data.remote.ApiServices
 import com.example.pricehunter.data.remote.ApiServices.Companion.BASE_URL
 import com.example.pricehunter.data.remote.ApiServices.Companion.TIMEOUT
 import com.example.pricehunter.data.remote.AuthInterceptor
+import com.example.pricehunter.domain.auth.AuthDomain
+import com.example.pricehunter.domain.auth.IAuthDomain
 import com.example.pricehunter.domain.finder.FinderDomain
 import com.example.pricehunter.domain.finder.IFinderDomain
 import com.example.pricehunter.domain.sample.ISampleDomain
 import com.example.pricehunter.domain.sample.SampleDomain
 import com.example.pricehunter.mock.MockApiServices
+import com.example.pricehunter.service.auth.AuthService
+import com.example.pricehunter.service.auth.IAuthService
 import com.example.pricehunter.service.finder.FinderService
 import com.example.pricehunter.service.finder.IFinderService
 import com.example.pricehunter.service.sample.ISampleService
 import com.example.pricehunter.service.sample.SampleService
+import com.example.pricehunter.view.auth.IAuthView
 import com.example.pricehunter.view.launch.ILaunchView
-import com.example.pricehunter.view.login.ILoginView
 import com.example.pricehunter.view.main.IMainView
 import com.example.pricehunter.view.sample.ISampleView
 import dagger.Module
@@ -47,7 +52,6 @@ import javax.inject.Singleton
  * that are used throughout the application. These dependencies are scoped
  * to the entire application's lifecycle.
  *
- * @property apiKey the API key used for authentication with the API
  * @property authInterceptor an interceptor that adds the API key to requests
  * @property loggingInterceptor an interceptor that logs requests and responses
  * @property apiServices the API services used to make network requests
@@ -61,12 +65,21 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    @Provides
-    //TODO: Find a way to securely save the API token and provide it from here
-    fun provideApiKey(): String = "Token"
+    private const val clientId = "RafiulHy-PriceHun-SBX-653724fcb-3ace6e4f"
+    private const val clientSecret = "SBX-53724fcbe316-aafc-4666-a394-403b"
 
     @Provides
-    fun provideAuthInterceptor(apiKey: String): AuthInterceptor = AuthInterceptor(apiKey)
+    fun provideAuthCredentials(): String {
+        return "Basic ${
+            (Base64.encodeToString(
+                "${clientId.trim()}:${clientSecret.trim()}".toByteArray(),
+                Base64.NO_WRAP
+            ).trim())
+        }"
+    }
+
+    @Provides
+    fun provideAuthInterceptor(credentials: String): AuthInterceptor = AuthInterceptor(credentials)
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
@@ -149,6 +162,12 @@ object AppModule {
 
     @Provides
     @Singleton
+    fun provideAuthDomain(apiServices: ApiServices): IAuthDomain {
+        return AuthDomain(apiServices)
+    }
+
+    @Provides
+    @Singleton
     fun provideSampleService(domain: ISampleDomain): ISampleService {
         return SampleService(domain)
     }
@@ -157,6 +176,12 @@ object AppModule {
     @Singleton
     fun provideFinderService(domain: IFinderDomain): IFinderService {
         return FinderService(domain)
+    }
+
+    @Provides
+    @Singleton
+    fun provideAuthService(domain: IAuthDomain): IAuthService {
+        return AuthService(domain)
     }
 }
 
@@ -185,8 +210,8 @@ object ViewModule {
     }
 
     @Provides
-    fun provideILoginView(activity: Activity): ILoginView {
-        return activity as ILoginView
+    fun provideIAuthView(activity: Activity): IAuthView {
+        return activity as IAuthView
     }
 
 }

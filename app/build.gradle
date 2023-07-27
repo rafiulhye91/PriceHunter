@@ -85,6 +85,9 @@ dependencies {
     //encrypted shared prefs
     implementation "androidx.security:security-crypto:1.0.0"
 
+    //date and time
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.4.6'
+
     //test
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'
     testImplementation 'com.google.truth:truth:1.1.3'
