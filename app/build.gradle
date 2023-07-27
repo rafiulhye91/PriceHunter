@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.pricehunter"
-        minSdk 21
+        minSdk 23
         targetSdk 33
         versionCode 1
         versionName "1.0"
@@ -20,7 +20,7 @@ android {
 
     buildTypes {
         debug {
-            buildConfigField "boolean", "USE_MOCK_API", "true"
+            buildConfigField "boolean", "USE_MOCK_API", "false"
         }
         release {
             minifyEnabled false
@@ -78,6 +78,15 @@ dependencies {
 
     //mockk
     implementation 'io.mockk:mockk:1.13.3'
+
+    //animation
+    implementation 'com.github.rosenpin:fading-text-view:3.0'
+
+    //encrypted shared prefs
+    implementation "androidx.security:security-crypto:1.0.0"
+
+    //date and time
+    implementation 'com.jakewharton.threetenabp:threetenabp:1.4.6'
 
     //test
     testImplementation 'org.jetbrains.kotlinx:kotlinx-coroutines-test:1.6.4'

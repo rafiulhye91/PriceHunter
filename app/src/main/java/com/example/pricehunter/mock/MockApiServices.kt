@@ -3,8 +3,11 @@ package com.example.pricehunter.mock
 import android.app.Application
 import android.util.Log
 import com.example.pricehunter.data.remote.ApiServices
+import com.example.pricehunter.data.remote.model.AccessTokenDTO
 import com.example.pricehunter.data.remote.model.SampleDTO
 import com.example.pricehunter.data.remote.model.SampleErrorDTO
+import com.example.pricehunter.data.remote.model.SearchResultDTO
+import com.example.pricehunter.domain.model.Image
 import com.example.pricehunter.util.TAG
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -21,6 +24,18 @@ import javax.inject.Inject
 
 class MockApiServices @Inject constructor(private val app: Application) :
     ApiServices {
+    override suspend fun getAccessToken(
+        grantType: String,
+        code: String,
+        redirectUri: String
+    ): Response<AccessTokenDTO?> {
+        return app.generateMockResponse("mock/access_token.json")
+    }
+
+    override suspend fun searchByImage(image: Image): Response<SearchResultDTO?> {
+        return app.generateMockResponse("mock/search_result.json")
+    }
+
     override suspend fun getSampleData(): Response<SampleDTO?> {
         return app.generateMockResponse("mock/sample_mock_response.json")
     }

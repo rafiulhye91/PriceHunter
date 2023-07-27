@@ -1,0 +1,486 @@
+{
+  "href": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&offset=0",
+  "total": 740,
+  "next": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&offset=3",
+  "limit": 3,
+  "offset": 0,
+  "itemSummaries": [
+    {
+      "itemId": "v1|1**********0|0",
+      "title": "MOCK: SSW 18 LTX 400 BL (602205650) SCREWDRIVER IN MASSA SWING BATTERY METABO",
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/8**********L/s-l225.jpg"
+      },
+      "price": {
+        "value": "754.95",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1|1**********0|0",
+      "seller": {
+        "username": "k***i",
+        "feedbackPercentage": "100.0",
+        "feedbackScore": 816
+      },
+      "condition": "New",
+      "conditionId": "1000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/00/s/N**********=/z/8yYAAOSwB09YPUeL/$_0.JPG?set_id=8**********7"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "116.19",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "currentBidPrice": {
+        "value": "754.95",
+        "currency": "USD"
+      },
+      "epid": "1050317207",
+      "itemWebUrl": "https://www.ebay.com/itm/SSW-18-LTX-400-BL-602205650-SCREWDRIVER-IN-MASSA-SWING-BATTERY-METABO/1**********0?hash=item1**********L",
+      "itemLocation": {
+        "country": "IT"
+      },
+      "leafCategoryIds": [
+        "122839"
+      ],
+      "categories": [
+        {
+          "categoryId": "122839",
+          "categoryName": "Screw Guns & Screwdrivers"
+        },
+        {
+          "categoryId": "631",
+          "categoryName": "Tools & Workshop Equipment"
+        },
+        {
+          "categoryId": "3247",
+          "categoryName": "Power Tools"
+        },
+        {
+          "categoryId": "11700",
+          "categoryName": "Home & Garden"
+        }
+      ],
+      "adultOnly": false,
+      "availableCoupons": false,
+      "legacyItemId": "1**********0"
+    },
+    {
+      "itemId": "v1|1**********0|0",
+      "title": "MOCK: Hitachi DV18DSDL Drill Driver with Percussion Case for joints 18 V",
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/e**********Y/s-l225.jpg"
+      },
+      "price": {
+        "value": "754.95",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1|1**********0|0",
+      "seller": {
+        "username": "k***i",
+        "feedbackPercentage": "100.0",
+        "feedbackScore": 816
+      },
+      "condition": "New",
+      "conditionId": "1000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/00/s/O**********=/z/edsAAOSwxXRbULsY/$_0.JPG?set_id=8**********7"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "115.59",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "currentBidPrice": {
+        "value": "754.95",
+        "currency": "USD"
+      },
+      "epid": "2272004525",
+      "itemWebUrl": "https://www.ebay.com/itm/Hitachi-DV18DSDL-Drill-Driver-with-Percussion-Case-for-joints-18-V/1**********0?hash=item1**********Y",
+      "itemLocation": {
+        "country": "IT"
+      },
+      "leafCategoryIds": [
+        "122839"
+      ],
+      "categories": [
+        {
+          "categoryId": "122839",
+          "categoryName": "Screw Guns & Screwdrivers"
+        },
+        {
+          "categoryId": "631",
+          "categoryName": "Tools & Workshop Equipment"
+        },
+        {
+          "categoryId": "3247",
+          "categoryName": "Power Tools"
+        },
+        {
+          "categoryId": "11700",
+          "categoryName": "Home & Garden"
+        }
+      ],
+      "adultOnly": false,
+      "availableCoupons": false,
+      "legacyItemId": "1**********0"
+    },
+    {
+      "itemId": "v1|1**********5|0",
+      "title": "MOCK: Bare-Tool Milwaukee 2632-20 M18 18-Volt Propex Expansion Tool (Tool Only, No... ",
+      "image": {
+        "imageUrl": "https://i.ebayimg.com/thumbs/images/g/L**********k/s-l225.jpg"
+      },
+      "price": {
+        "value": "859.96",
+        "currency": "USD"
+      },
+      "itemHref": "https://api.ebay.com/buy/browse/v1/item/v1|1**********5|0",
+      "seller": {
+        "username": "g***r",
+        "feedbackPercentage": "99.5",
+        "feedbackScore": 29595
+      },
+      "condition": "New",
+      "conditionId": "1000",
+      "thumbnailImages": [
+        {
+          "imageUrl": "https://i.ebayimg.com/00/s/N**********=/z/LvQAAOSw~aBasvbk/$_0.JPG?set_id=8**********7"
+        }
+      ],
+      "shippingOptions": [
+        {
+          "shippingCostType": "FIXED",
+          "shippingCost": {
+            "value": "0.00",
+            "currency": "USD"
+          }
+        }
+      ],
+      "buyingOptions": [
+        "FIXED_PRICE"
+      ],
+      "currentBidPrice": {
+        "value": "859.96",
+        "currency": "USD"
+      },
+      "epid": "2255069981",
+      "itemWebUrl": "https://www.ebay.com/itm/Bare-Tool-Milwaukee-2632-20-M18-18-Volt-Propex-Expansion-Tool-Tool-Only-No/1**********5?hash=item2**********k",
+      "itemLocation": {
+        "country": "US"
+      },
+      "leafCategoryIds": [
+        "122839"
+      ],
+      "categories": [
+        {
+          "categoryId": "122839",
+          "categoryName": "Screw Guns & Screwdrivers"
+        },
+        {
+          "categoryId": "631",
+          "categoryName": "Tools & Workshop Equipment"
+        },
+        {
+          "categoryId": "3247",
+          "categoryName": "Power Tools"
+        },
+        {
+          "categoryId": "11700",
+          "categoryName": "Home & Garden"
+        }
+      ],
+      "additionalImages": [
+        {
+          "imageUrl": "https://galleryplus.ebayimg.com/ws/web/1**********5_2_0_1/225x225.jpg"
+        },
+        {
+          "imageUrl": "https://galleryplus.ebayimg.com/ws/web/1**********5_3_0_1/225x225.jpg"
+        }
+      ],
+      "adultOnly": false,
+      "availableCoupons": false,
+      "legacyItemId": "1**********5"
+    }
+  ],
+  "refinement": {
+    "dominantCategoryId": "122839",
+    "categoryDistributions": [
+      {
+        "categoryName": "Screwdrivers",
+        "categoryId": "122839",
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&category_ids=122839"
+      }
+    ],
+    "conditionDistributions": [
+      {
+        "condition": "New",
+        "conditionId": "1000",
+        "matchCount": 668,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=conditionIds%3A%7B1000%7D"
+      },
+      {
+        "condition": "New other (see details)",
+        "conditionId": "1500",
+        "matchCount": 31,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=conditionIds%3A%7B1500%7D"
+      },
+      {
+        "condition": "Manufacturer refurbished",
+        "conditionId": "2000",
+        "matchCount": 5,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=conditionIds%3A%7B2000%7D"
+      },
+      {
+        "condition": "Seller refurbished",
+        "conditionId": "2500",
+        "matchCount": 1,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=conditionIds%3A%7B2500%7D"
+      },
+      {
+        "condition": "Used",
+        "conditionId": "3000",
+        "matchCount": 34,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=conditionIds%3A%7B3000%7D"
+      },
+      {
+        "condition": "For parts or not working",
+        "conditionId": "7000",
+        "matchCount": 1,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=conditionIds%3A%7B7000%7D"
+      }
+    ],
+    "buyingOptionDistributions": [
+      {
+        "buyingOption": "AUCTION",
+        "matchCount": 0,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=buyingOptions%3A%7BAUCTION%7D"
+      },
+      {
+        "buyingOption": "FIXED_PRICE",
+        "matchCount": 740,
+        "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&filter=buyingOptions%3A%7BFIXED_PRICE%7D"
+      }
+    ],
+    "aspectDistributions": [
+      {
+        "localizedAspectName": "Power Source",
+        "aspectValueDistributions": [
+          {
+            "localizedAspectValue": "Battery/Cordless",
+            "matchCount": 257,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Power%20Source%3A%7BBattery%2FCordless%7D"
+          },
+          {
+            "localizedAspectValue": "Corded Electric",
+            "matchCount": 67,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Power%20Source%3A%7BCorded%20Electric%7D"
+          },
+          {
+            "localizedAspectValue": "Not Specified",
+            "matchCount": 414,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Power%20Source%3A%7B!%7D"
+          }
+        ]
+      },
+      {
+        "localizedAspectName": "Brand",
+        "aspectValueDistributions": [
+          {
+            "localizedAspectValue": "BLACK+DECKER",
+            "matchCount": 176,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BBLACK%2BDECKER%7D"
+          },
+          {
+            "localizedAspectValue": "DEWALT",
+            "matchCount": 55,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BDEWALT%7D"
+          },
+          {
+            "localizedAspectValue": "Makita",
+            "matchCount": 61,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BMakita%7D"
+          },
+          {
+            "localizedAspectValue": "Milwaukee",
+            "matchCount": 121,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BMilwaukee%7D"
+          },
+          {
+            "localizedAspectValue": "Unbranded",
+            "matchCount": 49,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BUnbranded%7D"
+          },
+          {
+            "localizedAspectValue": "AEG",
+            "matchCount": 2,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BAEG%7D"
+          },
+          {
+            "localizedAspectValue": "Bosch",
+            "matchCount": 14,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BBosch%7D"
+          },
+          {
+            "localizedAspectValue": "Channellock",
+            "matchCount": 1,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BChannellock%7D"
+          },
+          {
+            "localizedAspectValue": "Craftsman",
+            "matchCount": 9,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BCraftsman%7D"
+          },
+          {
+            "localizedAspectValue": "GMC",
+            "matchCount": 1,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BGMC%7D"
+          },
+          {
+            "localizedAspectValue": "Hilti",
+            "matchCount": 1,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BHilti%7D"
+          },
+          {
+            "localizedAspectValue": "Hitachi",
+            "matchCount": 3,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BHitachi%7D"
+          },
+          {
+            "localizedAspectValue": "Ideal",
+            "matchCount": 3,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BIdeal%7D"
+          },
+          {
+            "localizedAspectValue": "Ingersoll Rand",
+            "matchCount": 6,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BIngersoll%20Rand%7D"
+          },
+          {
+            "localizedAspectValue": "King",
+            "matchCount": 1,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BKing%7D"
+          },
+          {
+            "localizedAspectValue": "Metabo",
+            "matchCount": 2,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BMetabo%7D"
+          },
+          {
+            "localizedAspectValue": "RIDGID",
+            "matchCount": 11,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BRIDGID%7D"
+          },
+          {
+            "localizedAspectValue": "Rockwell",
+            "matchCount": 4,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BRockwell%7D"
+          },
+          {
+            "localizedAspectValue": "Ryobi",
+            "matchCount": 13,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BRyobi%7D"
+          },
+          {
+            "localizedAspectValue": "SENCO",
+            "matchCount": 34,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BSENCO%7D"
+          },
+          {
+            "localizedAspectValue": "SKIL",
+            "matchCount": 7,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BSKIL%7D"
+          },
+          {
+            "localizedAspectValue": "Snap-on",
+            "matchCount": 1,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BSnap%2Don%7D"
+          },
+          {
+            "localizedAspectValue": "Stanley",
+            "matchCount": 2,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BStanley%7D"
+          },
+          {
+            "localizedAspectValue": "VonHaus",
+            "matchCount": 3,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BVonHaus%7D"
+          },
+          {
+            "localizedAspectValue": "WEN",
+            "matchCount": 29,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BWEN%7D"
+          },
+          {
+            "localizedAspectValue": "WORX",
+            "matchCount": 48,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7BWORX%7D"
+          },
+          {
+            "localizedAspectValue": "Not Specified",
+            "matchCount": 83,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Brand%3A%7B!%7D"
+          }
+        ]
+      },
+      {
+        "localizedAspectName": "Voltage",
+        "aspectValueDistributions": [
+          {
+            "localizedAspectValue": "2.4 V",
+            "matchCount": 1,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Voltage%3A%7B2%2E4%20V%7D"
+          },
+          {
+            "localizedAspectValue": "3.6 V",
+            "matchCount": 8,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Voltage%3A%7B3%2E6%20V%7D"
+          },
+          {
+            "localizedAspectValue": "4.8 V",
+            "matchCount": 3,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Voltage%3A%7B4%2E8%20V%7D"
+          },
+          {
+            "localizedAspectValue": "12 V",
+            "matchCount": 16,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Voltage%3A%7B12%20V%7D"
+          },
+          {
+            "localizedAspectValue": "18 V",
+            "matchCount": 11,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Voltage%3A%7B18%20V%7D"
+          },
+          {
+            "localizedAspectValue": "240 V",
+            "matchCount": 1,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Voltage%3A%7B240%20V%7D"
+          },
+          {
+            "localizedAspectValue": "Not Specified",
+            "matchCount": 641,
+            "refinementHref": "https://api.ebay.com/buy/browse/v1/item_summary/search_by_image?limit=3&sort=-price&aspect_filter=categoryId%3A122839,Voltage%3A%7B!%7D"
+          }
+        ]
+      }
+    ]
+  }
+}

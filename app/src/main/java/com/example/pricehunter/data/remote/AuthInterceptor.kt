@@ -4,23 +4,14 @@ import okhttp3.Interceptor
 import okhttp3.Response
 import javax.inject.Inject
 
-class AuthInterceptor @Inject constructor(private val apiKey: String) : Interceptor {
-    companion object {
-        private const val KEY_ID = "api_key_id"
-    }
-
+class AuthInterceptor @Inject constructor(private val credentials: String) : Interceptor {
     override fun intercept(chain: Interceptor.Chain): Response {
-        val original = chain.request()
-        val originalHttpUrl = original.url
-
-        val url = originalHttpUrl.newBuilder()
-            .addQueryParameter(KEY_ID, apiKey)
+        val request = chain.request().newBuilder()
+            .addHeader("Authorization", credentials)
+            .addHeader("Content-Type", "application/x-www-form-urlencoded")
+            .addHeader("Cache-Control", "no-cache")
+            .addHeader("Accept", "application/json")
             .build()
-
-        val requestBuilder = original.newBuilder()
-            .url(url)
-
-        val request = requestBuilder.build()
         return chain.proceed(request)
     }
 }

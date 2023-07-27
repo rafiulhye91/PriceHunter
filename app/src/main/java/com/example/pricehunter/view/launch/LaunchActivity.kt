@@ -1,9 +1,9 @@
 package com.example.pricehunter.view.launch
 
 import android.os.Bundle
-import android.view.View.VISIBLE
 import com.example.pricehunter.base.BaseActivity
 import com.example.pricehunter.databinding.ActivityLaunchBinding
+import com.example.pricehunter.view.auth.AuthActivity
 import com.example.pricehunter.view.main.MainActivity
 import dagger.hilt.android.AndroidEntryPoint
 import javax.inject.Inject
@@ -22,19 +22,6 @@ class LaunchActivity : BaseActivity(), ILaunchView {
         presenter.start()
     }
 
-    override fun setTitleAnimation() {
-        binding.tvTitle.apply {
-            scaleX = 1f
-            scaleY = 1f
-            visibility = VISIBLE
-            animate()
-                .scaleX(3f)
-                .scaleY(3f)
-                .setDuration(3000)
-                .start()
-        }
-    }
-
     override fun navigateToMainActivity() {
         navigateToActivity(
             context = this,
@@ -42,4 +29,10 @@ class LaunchActivity : BaseActivity(), ILaunchView {
             shouldFinish = true
         )
     }
+
+    override fun navToAuthActivity(featureCode: String) {
+        startActivity(AuthActivity.newInstance(this, featureCode))
+        finish()
+    }
+
 }
