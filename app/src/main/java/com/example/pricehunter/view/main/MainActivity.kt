@@ -1,8 +1,11 @@
 package com.example.pricehunter.view.main
 
+import android.content.pm.PackageManager
 import android.graphics.Bitmap
 import android.os.Bundle
 import android.util.Base64
+import androidx.activity.result.contract.ActivityResultContracts
+import androidx.core.content.ContextCompat
 import com.example.pricehunter.base.BaseActivity
 import com.example.pricehunter.databinding.ActivityMainBinding
 import com.example.pricehunter.domain.model.Image
@@ -17,6 +20,16 @@ class MainActivity : BaseActivity(), IMainView {
 
     @Inject
     lateinit var presenter: MainPresenter
+    private val requestPermissionLauncher =
+        registerForActivityResult(
+            ActivityResultContracts.RequestPermission()
+        ) { isGranted: Boolean ->
+            if (isGranted) {
+                presenter.onPermissionGranted()
+            } else {
+                presenter.onPermissionNotGranted()
+            }
+        }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -34,11 +47,21 @@ class MainActivity : BaseActivity(), IMainView {
     }
 
     override fun checkForCameraPermission() {
-//        TODO("Not yet implemented")
+        when {
+            ContextCompat.checkSelfPermission(
+                this,
+                android.Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED -> {
+                presenter.onPermissionGranted()
+            }
+            else -> {
+                presenter.onPermissionNotGranted()
+            }
+        }
     }
 
     override fun askForCameraPermission() {
-//        TODO("Not yet implemented")
+        requestPermissionLauncher.launch(android.Manifest.permission.CAMERA)
     }
 
     override fun showCamera() {
