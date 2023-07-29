@@ -16,29 +16,31 @@ class AuthPresenter @Inject constructor(
 ) : BasePresenter(view) {
 
     companion object {
-        private const val CLIENT_ID = "RafiulHy-PriceHun-SBX-653724fcb-3ace6e4f"
-        private const val REDIRECT_URI = "Rafiul_Hye-RafiulHy-PriceH-jcqtsw"
+        private const val CLIENT_ID = "RafiulHy-PriceHun-PRD-78cce83ee-f49823da"
+        private const val REDIRECT_URI = "Rafiul_Hye-RafiulHy-PriceH-hqjjvd"
         private const val SCOPE_LIST =
-            "https://api.ebay.com/oauth/api_scope/commerce.catalog.readonly"
+            "https://api.ebay.com/oauth/api_scope https://api.ebay.com/oauth/api_scope/sell.marketing.readonly https://api.ebay.com/oauth/api_scope/sell.marketing https://api.ebay.com/oauth/api_scope/sell.inventory.readonly https://api.ebay.com/oauth/api_scope/sell.inventory https://api.ebay.com/oauth/api_scope/sell.account.readonly https://api.ebay.com/oauth/api_scope/sell.account https://api.ebay.com/oauth/api_scope/sell.fulfillment.readonly https://api.ebay.com/oauth/api_scope/sell.fulfillment https://api.ebay.com/oauth/api_scope/sell.analytics.readonly https://api.ebay.com/oauth/api_scope/sell.finances https://api.ebay.com/oauth/api_scope/sell.payment.dispute https://api.ebay.com/oauth/api_scope/commerce.identity.readonly https://api.ebay.com/oauth/api_scope/commerce.notification.subscription https://api.ebay.com/oauth/api_scope/commerce.notification.subscription.readonly"
 
-        private const val loginUrl = "https://auth.sandbox.ebay.com/oauth2/authorize" +
+        private const val loginUrl = "https://auth.ebay.com/oauth2/authorize" +
                 "?client_id=$CLIENT_ID" +
                 "&redirect_uri=$REDIRECT_URI" +
                 "&response_type=code" +
-                "&scope=$SCOPE_LIST" +
-                "&prompt=login"
+                "&scope=$SCOPE_LIST"
     }
 
     override fun start() {
         when {
             !appPrefs.hasValidAuthCode() -> {
                 view.loadUrl(loginUrl)
+                return
             }
             !appPrefs.hasValidAccessToken() && !appPrefs.hasValidRefreshToken() -> {
                 getAccessToken()
+                return
             }
             !appPrefs.hasValidAccessToken() && appPrefs.hasValidRefreshToken() -> {
                 getRefreshAccessToken()
+                return
             }
             else -> {
                 view.navigateToMainActivity()
@@ -53,7 +55,6 @@ class AuthPresenter @Inject constructor(
             val refreshToken = appPrefs.getRefreshToken()
             if (refreshToken.isNullOrEmpty()) {
                 view.showError("You don't have access")
-                start()
                 return@launch
             }
             val result = authService.getRefreshAccessToken(refreshToken, SCOPE_LIST)

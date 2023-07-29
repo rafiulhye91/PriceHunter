@@ -26,9 +26,11 @@ class LaunchPresenter @Inject constructor(
         when {
             !appPrefs.hasValidAuthCode() -> {
                 view.navToAuthActivity()
+                return
             }
             !appPrefs.hasValidAccessToken() -> {
                 view.navToAuthActivity()
+                return
             }
             else -> {
                 view.navigateToMainActivity()

@@ -1,11 +1,13 @@
 package com.example.pricehunter.view.main
 
-import android.content.Intent
+import android.graphics.Bitmap
 import android.os.Bundle
+import android.util.Base64
 import com.example.pricehunter.base.BaseActivity
 import com.example.pricehunter.databinding.ActivityMainBinding
-import com.example.pricehunter.view.sample.SampleActivity
+import com.example.pricehunter.domain.model.Image
 import dagger.hilt.android.AndroidEntryPoint
+import java.io.ByteArrayOutputStream
 import javax.inject.Inject
 
 @AndroidEntryPoint
@@ -23,12 +25,24 @@ class MainActivity : BaseActivity(), IMainView {
         presenter.start()
     }
 
-    override fun setWelcomeText(string: String?) {
-        binding.tvWelcomeText.text = string
+    private fun getBase64Image(bitmap: Bitmap): Image {
+        val outputStream = ByteArrayOutputStream()
+        bitmap.compress(Bitmap.CompressFormat.PNG, 100, outputStream)
+        val byteArray = outputStream.toByteArray()
+        val base64ImageString = Base64.encodeToString(byteArray, Base64.NO_WRAP)
+        return Image(base64ImageString)
     }
 
-    override fun startSampleActivity() {
-        val intent = Intent(this, SampleActivity::class.java)
-        startActivity(intent)
+    override fun checkForCameraPermission() {
+//        TODO("Not yet implemented")
     }
+
+    override fun askForCameraPermission() {
+//        TODO("Not yet implemented")
+    }
+
+    override fun showCamera() {
+//        TODO("Not yet implemented")
+    }
+
 }

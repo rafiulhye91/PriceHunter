@@ -12,17 +12,19 @@ import com.example.pricehunter.data.local.AppDatabase
 import com.example.pricehunter.data.local.AppDatabase.Companion.DATABASE_NAME
 import com.example.pricehunter.data.local.DaoServices
 import com.example.pricehunter.data.prefs.AppPrefs
-import com.example.pricehunter.data.remote.ApiServices
-import com.example.pricehunter.data.remote.ApiServices.Companion.BASE_URL
-import com.example.pricehunter.data.remote.ApiServices.Companion.TIMEOUT
-import com.example.pricehunter.data.remote.AuthInterceptor
+import com.example.pricehunter.data.remote.AppApiServices
+import com.example.pricehunter.data.remote.AuthApiServices
+import com.example.pricehunter.data.remote.AuthApiServices.Companion.BASE_URL
+import com.example.pricehunter.data.remote.AuthApiServices.Companion.TIMEOUT
+import com.example.pricehunter.data.remote.interceptors.AuthBasicInterceptor
+import com.example.pricehunter.data.remote.interceptors.AuthBearerInterceptor
 import com.example.pricehunter.domain.auth.AuthDomain
 import com.example.pricehunter.domain.auth.IAuthDomain
 import com.example.pricehunter.domain.finder.FinderDomain
 import com.example.pricehunter.domain.finder.IFinderDomain
 import com.example.pricehunter.domain.sample.ISampleDomain
 import com.example.pricehunter.domain.sample.SampleDomain
-import com.example.pricehunter.mock.MockApiServices
+import com.example.pricehunter.mock.MockAuthApiServices
 import com.example.pricehunter.service.auth.AuthService
 import com.example.pricehunter.service.auth.IAuthService
 import com.example.pricehunter.service.finder.FinderService
@@ -65,8 +67,8 @@ import javax.inject.Singleton
 @InstallIn(SingletonComponent::class)
 object AppModule {
 
-    private const val clientId = "RafiulHy-PriceHun-SBX-653724fcb-3ace6e4f"
-    private const val clientSecret = "SBX-53724fcbe316-aafc-4666-a394-403b"
+    private const val clientId = "RafiulHy-PriceHun-PRD-78cce83ee-f49823da"
+    private const val clientSecret = "PRD-8cce83ee510f-ad39-4248-8888-0de2"
 
     @Provides
     fun provideAuthCredentials(): String {
@@ -79,28 +81,33 @@ object AppModule {
     }
 
     @Provides
-    fun provideAuthInterceptor(credentials: String): AuthInterceptor = AuthInterceptor(credentials)
+    fun provideBasicAuthInterceptor(credentials: String): AuthBasicInterceptor =
+        AuthBasicInterceptor(credentials)
+
+    @Provides
+    fun provideBearerAuthInterceptor(): AuthBearerInterceptor =
+        AuthBearerInterceptor()
 
     @Provides
     fun provideLoggingInterceptor(): HttpLoggingInterceptor {
         val loggingInterceptor = HttpLoggingInterceptor()
-        loggingInterceptor.level = HttpLoggingInterceptor.Level.NONE
+        loggingInterceptor.level = HttpLoggingInterceptor.Level.BODY
         return loggingInterceptor
     }
 
     @Provides
     @Singleton
-    fun provideApiServices(
-        authInterceptor: AuthInterceptor,
+    fun provideAuthApiServices(
+        authBasicInterceptor: AuthBasicInterceptor,
         loggingInterceptor: HttpLoggingInterceptor,
         app: Application,
         @Named("useMockApi") useMockApi: Boolean
-    ): ApiServices {
+    ): AuthApiServices {
         return if (useMockApi) {
-            MockApiServices(app)
+            MockAuthApiServices(app)
         } else {
             val client = OkHttpClient.Builder()
-                .addInterceptor(authInterceptor)
+                .addInterceptor(authBasicInterceptor)
                 .addInterceptor(loggingInterceptor)
                 .callTimeout(TIMEOUT, TimeUnit.SECONDS)
                 .build()
@@ -109,8 +116,29 @@ object AppModule {
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(client)
                 .build()
-                .create(ApiServices::class.java)
+                .create(AuthApiServices::class.java)
         }
+    }
+
+    @Provides
+    @Singleton
+    fun provideAppApiServices(
+        authBearerInterceptor: AuthBearerInterceptor,
+        loggingInterceptor: HttpLoggingInterceptor,
+        app: Application,
+        @Named("useMockApi") useMockApi: Boolean
+    ): AppApiServices {
+        val client = OkHttpClient.Builder()
+            .addInterceptor(authBearerInterceptor)
+            .addInterceptor(loggingInterceptor)
+            .callTimeout(AppApiServices.TIMEOUT, TimeUnit.SECONDS)
+            .build()
+        return Retrofit.Builder()
+            .baseUrl(AppApiServices.BASE_URL)
+            .addConverterFactory(GsonConverterFactory.create())
+            .client(client)
+            .build()
+            .create(AppApiServices::class.java)
     }
 
     @Provides
@@ -150,20 +178,23 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun provideSampleDomain(apiServices: ApiServices, daoServices: DaoServices): ISampleDomain {
-        return SampleDomain(apiServices, daoServices)
+    fun provideSampleDomain(
+        authApiServices: AuthApiServices,
+        daoServices: DaoServices
+    ): ISampleDomain {
+        return SampleDomain(authApiServices, daoServices)
     }
 
     @Provides
     @Singleton
-    fun provideFinderDomain(apiServices: ApiServices): IFinderDomain {
-        return FinderDomain(apiServices)
+    fun provideFinderDomain(appApiServices: AppApiServices): IFinderDomain {
+        return FinderDomain(appApiServices)
     }
 
     @Provides
     @Singleton
-    fun provideAuthDomain(apiServices: ApiServices): IAuthDomain {
-        return AuthDomain(apiServices)
+    fun provideAuthDomain(authApiServices: AuthApiServices): IAuthDomain {
+        return AuthDomain(authApiServices)
     }
 
     @Provides

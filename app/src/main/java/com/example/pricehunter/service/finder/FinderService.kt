@@ -7,7 +7,7 @@ import com.example.pricehunter.domain.model.Item
 import javax.inject.Inject
 
 class FinderService @Inject constructor(private val domain: IFinderDomain) : IFinderService {
-    override suspend fun searchByImage(image: Image): Resource<List<Item>> {
-        return domain.searchByImage(image)
+    override suspend fun searchByImage(accessToken: String, image: Image): Resource<List<Item>> {
+        return domain.searchByImage(accessToken, image)
     }
 }

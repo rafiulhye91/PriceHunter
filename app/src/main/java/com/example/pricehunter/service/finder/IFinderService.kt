@@ -6,5 +6,5 @@ import com.example.pricehunter.domain.model.Item
 
 
 interface IFinderService {
-    suspend fun searchByImage(image: Image): Resource<List<Item>>
+    suspend fun searchByImage(accessToken: String, image: Image): Resource<List<Item>>
 }
