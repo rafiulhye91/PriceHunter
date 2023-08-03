@@ -4,4 +4,9 @@
     <string name="error">Error</string>
     <string name="ok">OK</string>
     <string name="hunt">Hunt</string>
+    <string name="error_camera">Error! cannot open the camera:</string>
+    <string name="error_capture_image">Error while capturing image:</string>
+    <string name="error_processing_image">Error while processing image:</string>
+    <string name="error_creating_image_file">Error creating temporary image file:</string>
+    <string name="error_bitmap_conversion">Failed to bitmap conversion</string>
 </resources>
