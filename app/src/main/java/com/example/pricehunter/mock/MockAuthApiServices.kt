@@ -2,12 +2,10 @@ package com.example.pricehunter.mock
 
 import android.app.Application
 import android.util.Log
-import com.example.pricehunter.data.remote.ApiServices
+import com.example.pricehunter.data.remote.AuthApiServices
 import com.example.pricehunter.data.remote.model.AccessTokenDTO
 import com.example.pricehunter.data.remote.model.RefreshTokenDTO
 import com.example.pricehunter.data.remote.model.SampleDTO
-import com.example.pricehunter.data.remote.model.SearchResultDTO
-import com.example.pricehunter.domain.model.Image
 import com.example.pricehunter.util.TAG
 import com.google.gson.Gson
 import kotlinx.coroutines.Dispatchers
@@ -24,8 +22,8 @@ import retrofit2.Response
 import java.io.FileNotFoundException
 import javax.inject.Inject
 
-class MockApiServices @Inject constructor(private val app: Application) :
-    ApiServices {
+class MockAuthApiServices @Inject constructor(private val app: Application) :
+    AuthApiServices {
     override suspend fun getAccessToken(
         grantType: String,
         code: String,
@@ -40,10 +38,6 @@ class MockApiServices @Inject constructor(private val app: Application) :
         scope: String
     ): Response<RefreshTokenDTO?> {
         return app.generateMockResponse("mock/refresh_token.json")
-    }
-
-    override suspend fun searchByImage(image: Image): Response<SearchResultDTO?> {
-        return app.generateMockResponse("mock/search_result.json")
     }
 
     override suspend fun getSampleData(): Response<SampleDTO?> {

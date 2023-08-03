@@ -1,5 +1,5 @@
 package com.example.pricehunter.domain.model
 
-data class Image(
+data class ImageRequest(
     val image: String
 )
